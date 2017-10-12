@@ -20,8 +20,19 @@ class PrototypesController < ApplicationController
   end
 
   def show
+  end
+
+  def edit
     @prototype = Prototype.find(params[:id])
-    @comment = Comment.new
+  end
+
+  def update
+    prototype = Prototype.find(params[:id])
+    if prototype.user_id == current_user.id
+      prototype.update(prototype_params)
+      # prototype.captured_images.main.first.update(captured_images)
+      redirect_to prototype_path, notice: 'successfully uploaded'
+    end
   end
 
   private
@@ -40,3 +51,4 @@ class PrototypesController < ApplicationController
     )
   end
 end
+
