@@ -1,0 +1,39 @@
+.container.user-page
+  %header.user-nav
+    .media
+      .media-left
+        -# = image_tag(@user.avatar.thumb, alt: "profile_photo", class: "media-object", style: "width: 64px; height: 64px;")
+      .media-body
+        %h4#top-aligned-media.media-heading
+          = @user.name
+          %span.label.label-default.project-number
+            29
+            %i Projects
+        .proto-user
+          %span.degree= @user.position
+        .row
+          .col-md-6
+            %h4 Profile
+            %p= @user.profile
+          .col-md-6
+            %h4 Occupation
+            %p= @user.occupation
+.container.proto-list
+  .row
+    = render partial: 'prototypes/prototype', collection: @prototypes
+
+
+    -# コメント機能の元のプログラムをはっています
+        -# %form#new_comment.new_comment{"accept-charset": "UTF-8", action: "/comments", "data-remote": "true", method: "post"}
+        -#       .form-inlign{ role: "form"}
+        -# = form_for @comment, id: "new_comment", class: "new_comment" do |f|
+        -#   = f.label :name, type: "hidden", value: "✓"
+        -#     %h4 Write a comment
+        -#   .row
+        -#     .form-group.col-md-10
+        -#       = f.text_area id: "comment_field.form-control", name: "comment[text]", placeholder: "Input comment", required: "required", rows: "3"
+        -#       = f.submit id: "comment_user_id",name: "comment[user_id]", type: "hidden", value: "88"
+        -#       = f.submit id: "comment_prototype_id",name: "comment[prototype_id]", type: "hidden", value: "69"
+        -#     .form-grou.col-2
+        -#       = f.submit class: "btn btn-primary", name: "commit", type: "submit", value: "comment"
+
