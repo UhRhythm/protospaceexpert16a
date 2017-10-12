@@ -54,6 +54,6 @@ test:
 #   password: <%= ENV['PROTOSPACE-IN-DEV_DATABASE_PASSWORD'] %>
 production:
   <<: *default
-  database: heroku_8af4f27e81209e8
-  username: b63f76d52ee99e
+  database: heroku_047c802c6a5feec
+  username: b46e0f83b675f6
   password: <%= ENV['DATABASE_PASSWORD'] %>
