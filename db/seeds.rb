@@ -1,7 +1,7 @@
 # encoding: utf-8
 require "csv"
-companies_csv = CSV.readlines("db/prototypes.csv")
+companies_csv = CSV.readlines("db/comments.csv")
 companies_csv.shift
 companies_csv.each do |row|
-  Prototype.create(title: row[1], catch_copy: row[2], concept: row[3], user_id: row[4])
+  Comment.create(text: row[1], user_id: row[2], prototype_id: row[3], user_id: row[4])
 end
