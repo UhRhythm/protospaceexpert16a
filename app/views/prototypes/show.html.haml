@@ -10,7 +10,9 @@
             = @prototype.title
           - if user_signed_in? && current_user.id == @prototype.user_id
             .edit
-              = link_to "edit", edit_prototype_path(@prototype)
+              = link_to "Edit", edit_prototype_path(@prototype)
+            .delete
+              = link_to "Delete", prototype_path(@prototype), method: :delete
           .proto-user
             by
             = link_to "#{@prototype.user.name}", user_path(@prototype.user)
