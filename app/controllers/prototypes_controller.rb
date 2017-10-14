@@ -35,8 +35,13 @@ class PrototypesController < ApplicationController
     if prototype.user_id == current_user.id
       prototype.update(prototype_params)
       # prototype.captured_images.main.first.update(captured_images)
-      redirect_to prototype_path, notice: 'successfully uploadedd'
+      redirect_to prototype_path, notice: 'successfully uploaded'
     end
+  end
+
+  def destroy
+    prototype = Prototype.find(params[:id])
+    prototype.destroy if prototype.user_id == current_user.id
   end
 
   private

@@ -595,6 +595,19 @@ body {
   }
 }
 
+/* 削除画面css */
+
+.contents1 {
+  height: 300px;
+  margin: 0 auto;
+  padding-top: 60px;
+  width: 960px;
+  .home1 {
+    text-align: center;
+  }
+}
+
+
 /* -- flash messages ------------------------------------ */
 .alert {
   margin: 0;
