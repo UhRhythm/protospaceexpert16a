@@ -8,11 +8,6 @@
         .media-body
           %h4#top-aligned-media.media-heading
             = @prototype.title
-          - if user_signed_in? && current_user.id == @prototype.user_id
-            .edit
-              = link_to "Edit", edit_prototype_path(@prototype)
-            .delete
-              = link_to "Delete", prototype_path(@prototype), method: :delete
           .proto-user
             by
             = link_to "#{@prototype.user.name}", user_path(@prototype.user)
@@ -42,26 +37,14 @@
           %a{href: "#", class: "btn btn-default"} iPad
         %li
           %a{href: "#", class: "btn btn-default"} wireframe
-  -# ここからコメント機能
-  .row.proto-comments
-    %h4.col-md-12 Comments
-    %span.num#comments_count #{@comments_count}
-    .col-md-8
-      - @comments.each do |c|
-        #comments
-          .media
-            .media-left
-              %a{ href: "/users/83"}
-                %img{ alt: "64x64", src: "", style: "width: 64px; height: 64px;", "data-src": "holder.js/64x64", "data-holder": "{&quot;rendered&quot;:&quot;true&quot;}", class: "media-object"}
-            .media-body
-              %h4.media-heading#top-aligned-media= c.user.name
-              %p= c.text
-              = link_to '編集', edit_prototype_comment_path(c.prototype_id, c.id)
+
     .form-inlign{ role: "form"}
-      = form_for @comment, url: prototype_comments_path(@prototype, @comment), id: "new_comment", class: "new_comment" do |f|
+      = form_for @comment, url: prototype_comment_path(@prototype, @comment), id: "new_comment", class: "new_comment" do |f|
         %h4 Write a comment
         .row
           .form-group.col-md-10
-            = f.text_field :text
+            = f.text_field :text, placeholder: "#{@comment.text}"
           .form-group.col-2
             = f.submit class: "btn btn-primary", name: "commit", type: "submit", value: "comment"
+          .form-group.delete-btn
+            = link_to 'コメント削除', prototype_comment_path, method: :delete

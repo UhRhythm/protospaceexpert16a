@@ -16,13 +16,22 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    v
+    @comment = Comment.find(params[:id])
+    @prototype = @comment.prototype
   end
 
   def update
+    @comment = Comment.find(params[:id])
+    if @comment.update(comment_params)
+      redirect_to root_path, notice: "成功"
+    else
+      redirect_to root_path, notice: "失敗"
+   end
   end
 
   def destroy
+    comment = Comment.find(params[:id])
+    comment.destroy if comment.user_id == current_user.id
   end
 
   private
