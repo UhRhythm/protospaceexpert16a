@@ -149,7 +149,19 @@ body {
   z-index: 2;
 }
 
-
+/* -- show-edit.delete.button-style -------------------------------- */
+.media-heading {
+  width: 165px;
+  margin-right: 10px;
+}
+.edit {
+  float: right;
+  margin: 0 10px;
+}
+.delete {
+  float: right;
+  margin: 0 10px;
+}
 
 /* -- Ripple effect -------------------------------- */
 .ripple-effect {

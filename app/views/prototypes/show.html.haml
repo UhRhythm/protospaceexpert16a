@@ -8,11 +8,11 @@
         .media-body
           %h4#top-aligned-media.media-heading
             = @prototype.title
-          - if user_signed_in? && current_user.id == @prototype.user_id
-            .edit
-              = link_to "Edit", edit_prototype_path(@prototype)
-            .delete
-              = link_to "Delete", prototype_path(@prototype), method: :delete
+            - if user_signed_in? && current_user.id == @prototype.user_id
+              .delete
+                = link_to "Delete", prototype_path(@prototype), method: :delete, class: 'btn btn-xs navbar-inverse btn-eit'
+              .edit
+                = link_to "Edit", edit_prototype_path(@prototype), class: 'btn btn-xs navbar-inverse btn-edit'
           .proto-user
             by
             = link_to "#{@prototype.user.name}", user_path(@prototype.user)
@@ -23,7 +23,7 @@
       = image_tag(@prototype.set_main_thumbnail.large, class: 'img-responsive img-size-fix', style: "margin: 0 auto;")
     .col-md-3
       %ul.proto-sub-list.list-group
-        - @prototype.captured_images.sub.each do |image|
+        - @prototype.captured_images.sub.last(3).each do |image|
           %li.list-group-item
             = image_tag(image.content, class: 'img-responsive')
   .row.proto-description
