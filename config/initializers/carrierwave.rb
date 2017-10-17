@@ -10,6 +10,7 @@ CarrierWave.configure do |config|
     aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
     region: 'ap-northeast-1'
   }
+  config.fog_directory = ENV['S3_BUCKET_NAME']
 
     case Rails.env
     when 'development'
