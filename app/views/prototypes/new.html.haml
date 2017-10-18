@@ -35,12 +35,12 @@
         .col-md-12
           %h4 TagList
           .row
-            = f.fields_for :tags do |tag|
+            = f.fields_for :tags[:name] do |tag|
               .col-md-3
-                = tag.text_field :name, placeholder: "ex)Web"
+                = tag.text_field :[0], placeholder: "ex)Web"
               .col-md-3
-                = tag.text_field :name, placeholder: "ex)Web"
+                = tag.text_field :name[], placeholder: "ex)rails"
               .col-md-3
-                = tag.text_field :name, placeholder: "ex)Web"
+                = tag.text_field :name[], placeholder: "ex)ruby"
       .row.text-center.proto-btn
         = f.submit "PUBLISH", id: "button", class: "btn btn-lg btn-primary btn-block"
