@@ -46,6 +46,7 @@
   .row.proto-comments
     %h4.col-md-12 Comments
     %span.num#comments_count #{@comments_count}
+    -# コメント一覧
     .col-md-8
       - @comments.each do |c|
         #comments
@@ -57,11 +58,12 @@
               %h4.media-heading#top-aligned-media= c.user.name
               %p= c.text
               = link_to '編集', edit_prototype_comment_path(c.prototype_id, c.id)
-    .form-inlign{ role: "form"}
-      = form_for @comment, url: prototype_comments_path(@prototype, @comment), id: "new_comment", class: "new_comment" do |f|
-        %h4 Write a comment
-        .row
-          .form-group.col-md-10
-            = f.text_field :text
-          .form-group.col-2
-            = f.submit class: "btn btn-primary", name: "commit", type: "submit", value: "comment"
+    -# コメント作成
+  .form-inlign{ role: "form"}
+    = form_for @comment, url: prototype_comments_path(@prototype, @comment), id: "new_comment", class: "new_comment" do |f|
+      %h4 Write a comment
+      .row
+        .form-group.col-md-10
+          = f.text_field :text, class: "text-box"
+        .form-group.col-2
+          = f.submit class: "btn btn-primary", name: "commit", type: "submit", value: "comment"

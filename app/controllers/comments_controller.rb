@@ -5,13 +5,15 @@ class CommentsController < ApplicationController
     @comment = Comment.new
   end
 
-
   def create
-    @comment = Comment.new(comment_params)
-    if @comment.save
-      redirect_to root_path, notice: "メッセージの作成に成功しました。"
+    @comments = Comment.new(comment_params)
+    if @comments.save
+      respond_to do |format|
+        format.html { redirect_to prototype_path(params[:prototype_id]), notice: "成功" }
+        format.json
+      end
     else
-      redirect_to root_path, alert: "メッセージを入力してください"
+      redirect_to prototype_path, alert: "失敗"
     end
   end
 
@@ -39,3 +41,16 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:text).merge(user_id: current_user.id, prototype_id: params[:prototype_id])
   end
 end
+
+  # def create
+  #   @comment = Comment.new(comment_params)
+  #   if @comment.save
+  #     # redirect_to root_path, notice: "メッセージの作成に成功しました。"
+  #     respond_to do |format|
+  #       format.html { redirect_to prototype_path(params[:prototype_id])  }
+  #       format.json
+  #     end
+  #   else
+  #     redirect_to root_path, alert: "メッセージを入力してください"
+  #   end
+  # end
