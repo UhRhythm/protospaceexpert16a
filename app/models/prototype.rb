@@ -37,5 +37,7 @@ class Prototype < ActiveRecord::Base
       prototype_tag = Tag.find_or_create_by(name:new_name)
       self.tags << prototype_tag
     end
+  end
+
 end
 
