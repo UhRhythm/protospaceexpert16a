@@ -59,7 +59,7 @@ class PrototypesController < ApplicationController
       :concept,
       :user_id,
       captured_images_attributes: [:content, :status],
-      # tags_attribute: [:name]
+      prototype_tags_attributes: [:name]
     )
   end
 end
