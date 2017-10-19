@@ -15,10 +15,12 @@ CarrierWave.configure do |config|
     case Rails.env
     when 'development'
         config.fog_directory  = 'protospaceteama'
-        config.asset_host = 'https://s3.amazonaws.com/protospaceteama'
+        #config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/protospaceteama'
+        config.asset_host = ENV['AWS_S3_URL']
     when 'production'
         config.fog_directory  = 'protospaceteama'
-        config.asset_host = 'https://s3.amazonaws.com/protospaceteama'
+        #config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/protospaceteama'
+        config.asset_host = ENV['AWS_S3_URL']
     end
 end
 
