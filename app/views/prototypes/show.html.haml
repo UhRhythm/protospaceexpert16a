@@ -60,7 +60,7 @@
               = link_to '編集', edit_prototype_comment_path(c.prototype_id, c.id)
     -# コメント作成
   .form-inlign{ role: "form"}
-    = form_for @comment, url: prototype_comments_path(@prototype, @comment), id: "new_comment", class: "new_comment" do |f|
+    = form_for @comment, url: prototype_comments_path(@prototype, @comment), id: "new_comment", remote: true do |f|
       %h4 Write a comment
       .row
         .form-group.col-md-10
