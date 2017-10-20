@@ -8,11 +8,12 @@ class PrototypesController < ApplicationController
   def new
     @prototype = Prototype.new
     @prototype.captured_images.build
-    # @prototype.tags.build
+    @prototype.tags.build
   end
 
   def create
     @prototype = Prototype.new(prototype_params)
+        binding.pry
     if @prototype.save
       redirect_to :root, notice: 'New prototype was successfully created'
     else
@@ -59,7 +60,7 @@ class PrototypesController < ApplicationController
       :concept,
       :user_id,
       captured_images_attributes: [:content, :status],
-      prototype_tags_attributes: [:name]
+      tags_attribute: [:name]
     )
   end
 end

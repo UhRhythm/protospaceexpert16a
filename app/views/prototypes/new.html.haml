@@ -35,13 +35,13 @@
         .col-md-12
           %h4 TagList
           .row
-            = f.fields_for :prototype_tags do |t|
+            = f.fields_for :tags  do |t|
               .col-md-3
                 = t.text_field :name, placeholder: "ex)Web"
-            = f.fields_for :prototype_tags do |t|
+            = f.fields_for :tags  do |t|
               .col-md-3
                 = t.text_field :name, placeholder: "ex)rails"
-            = f.fields_for :prototype_tags do |t|
+            = f.fields_for :tags  do |t|
               .col-md-3
                 = t.text_field :name, placeholder: "ex)ruby"
       .row.text-center.proto-btn
