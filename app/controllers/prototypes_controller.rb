@@ -25,6 +25,7 @@ class PrototypesController < ApplicationController
     @comment = Comment.new
     @comments = @prototype.comments
     @comments_count = Comment.count
+    @tags = @prototype.tags
   end
 
   def edit

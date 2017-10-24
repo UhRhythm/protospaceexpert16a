@@ -38,10 +38,10 @@
     .col-md-3
       %h4 Tag List
       %ul.proto-tag-list.list-inline
-        %li
-          %a{href: "#", class: "btn btn-default"} iPad
-        %li
-          %a{href: "#", class: "btn btn-default"} wireframe
+        - @tags.each do |tag|
+        - binding.pry
+          %li
+            %a{href: "", class: "btn btn-default"} #{tag.name}
   -# ここからコメント機能
   .row.proto-comments
     %h4.col-md-12 Comments
