@@ -1,3 +1,5 @@
-%h1 削除
-
-= link_to "ルートへ", root_path
+%div.delete_body
+  %h1 削除が完了しました
+  = link_to "ルートへ", root_path
+  %p |
+  = link_to "もとの画面に戻る", prototype_path(params[:prototype_id])

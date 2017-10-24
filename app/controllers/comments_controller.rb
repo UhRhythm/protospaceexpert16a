@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  before_filter :check_logined, except: [:create]
+  before_action :check_logined, only: [:create]
 
 
   def new
@@ -6,14 +8,10 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comments = Comment.new(comment_params)
-    if @comments.save
-      respond_to do |format|
-        format.html { redirect_to prototype_path(params[:prototype_id]), notice: "成功" }
-        format.json
-      end
-    else
-      redirect_to prototype_path, alert: "失敗"
+    @comments = Comment.create(comment_params)
+    respond_to do |format|
+      format.html
+      format.json
     end
   end
 
@@ -32,25 +30,30 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    comment = Comment.find(params[:id])
-    comment.destroy if comment.user_id == current_user.id
+    @comment = Comment.find(params[:id])
+    @comment.destroy if @comment.user_id == current_user.id
   end
 
   private
   def comment_params
     params.require(:comment).permit(:text).merge(user_id: current_user.id, prototype_id: params[:prototype_id])
   end
+
+  def check_logined
+    if current_user then
+      begin
+        @user = current_user.id
+      rescue ActiveRecord::RecordNotFound
+        reset_session
+      end
+    end
+
+    unless current_user
+      # flash[:referer] = request.fullpath
+      redirect_to new_user_session_path
+
+    end
+  end
+
 end
 
-  # def create
-  #   @comment = Comment.new(comment_params)
-  #   if @comment.save
-  #     # redirect_to root_path, notice: "メッセージの作成に成功しました。"
-  #     respond_to do |format|
-  #       format.html { redirect_to prototype_path(params[:prototype_id])  }
-  #       format.json
-  #     end
-  #   else
-  #     redirect_to root_path, alert: "メッセージを入力してください"
-  #   end
-  # end

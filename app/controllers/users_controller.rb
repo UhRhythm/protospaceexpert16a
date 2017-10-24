@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def show
     @prototypes = @user.prototypes
-    @user = "1"
+    # @user = "1"
   end
 
   def edit
