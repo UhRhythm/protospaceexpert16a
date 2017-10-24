@@ -39,9 +39,8 @@
       %h4 Tag List
       %ul.proto-tag-list.list-inline
         - @tags.each do |tag|
-        - binding.pry
           %li
-            %a{href: "", class: "btn btn-default"} #{tag.name}
+            = link_to "#{tag.name}",tag_path(tag.id), class: "btn btn-default"
   -# ここからコメント機能
   .row.proto-comments
     %h4.col-md-12 Comments
