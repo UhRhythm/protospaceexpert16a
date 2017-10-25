@@ -1,0 +1,21 @@
+.thumbnail {
+  &-tag-name {
+    font-size: 2rem;
+    background-color: #eee;
+    height: 50px;
+    text-align: center;
+    padding-top: 10px;
+    font-weight: 300;
+  }
+  &-tag-meta {
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    background-color: #777777;
+  }
+}
+.row-tag {
+  position: relative;
+  height: 915px;
+  width: 1432px;
+}
