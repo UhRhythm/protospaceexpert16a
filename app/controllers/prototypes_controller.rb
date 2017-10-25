@@ -8,7 +8,9 @@ class PrototypesController < ApplicationController
   def new
     @prototype = Prototype.new
     @prototype.captured_images.build
-    @prototype.tags.build
+    @prototype.tags.each do |tag|
+      @prototype.tags.find_or_initialize_by(name: tag.name)
+    end
   end
 
   def create
@@ -17,7 +19,7 @@ class PrototypesController < ApplicationController
       redirect_to :root, notice: 'New prototype was successfully created'
     else
       redirect_to ({ action: new }), alert: 'YNew prototype was unsuccessfully created'
-     end
+    end
   end
 
   def show
