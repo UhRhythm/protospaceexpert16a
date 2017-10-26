@@ -11,13 +11,11 @@
         %li.btn-default.btn-popular
           = link_to "Newest", "#"
       = link_to "VIEW TAGS", tags_path, class: "btn btn-default col-lg-1"
-
 .container.proto-list
   .row
-    .thumbnail
-      .thumbnail-tag-name
-        = @tag.name
-      .thumbnail-tag-meta
-        = @prototypes.count
-.row-tag
-  = render partial: 'prototypes/prototype', collection: @prototypes
+    = @tags.each do |tag|
+      .thumbnail-mini
+        .thumbnail-mini-name
+          = tag.name
+        .thumbnail-mini-meta
+          = tag.name

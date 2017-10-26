@@ -19,3 +19,26 @@
   height: 915px;
   width: 1432px;
 }
+.thumbnail-mini {
+  width: 25%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-bottom: 8px;
+  float: left;
+  &-name{
+    font-size: 2rem;
+    background-color: #eee;
+    height: 50px;
+    text-align: center;
+    padding-top: 10px;
+    font-weight: 300;
+  }
+  &-meta {
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    background-color: #777777;
+  }
+}
