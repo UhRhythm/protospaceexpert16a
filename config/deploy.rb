@@ -2,7 +2,7 @@
 lock '3.10.0'
 
 set :application, 'protospaceexpert16a'
-set :repo_url,  'git@github.com:<UhRhythm>/<protospaceexpert16a>.git'
+set :repo_url,  'git@github.com:UhRhythm/protospaceexpert16a.git'
 
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
 
@@ -10,7 +10,7 @@ set :rbenv_type, :user
 set :rbenv_ruby, '2.3.1'
 
 set :ssh_options, auth_methods: ['publickey'],
-                  keys: ['/Users/nigaurikensuke/downloads/key_pair.pem']
+                  keys: ['/Users/nigaurikensuke/Documents/key_pair.pem']
 
 set :unicorn_pid, -> { "#{shared_path}/tmp/pids/unicorn.pid" }
 set :unicorn_config_path, -> { "#{current_path}/config/unicorn.rb" }
