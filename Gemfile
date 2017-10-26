@@ -17,6 +17,7 @@ gem 'devise'
 gem 'carrierwave'
 gem 'fog'
 gem 'rmagick'
+gem 'split'
 
 group :development, :test do
   gem 'byebug'
