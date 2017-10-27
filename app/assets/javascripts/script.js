@@ -3,6 +3,7 @@ $(document).on('turbolinks:load',function(){
     if (comments.user_avatar != null)
       var user_avatar = `<img alt="64x64", src="", style="width: 64px; height: 64px;", "data-src"="holder.js/64x64", "data-holder"="{&quot;rendered&quot;:&quot;true&quot;}", class="media-object">`
     var html = `
+      <div id="comments">
         <div class="media">
           <div class="media-left">
             <a href="/users/83"></a>
@@ -14,6 +15,7 @@ $(document).on('turbolinks:load',function(){
             <a data-method="delete" href="/prototypes/${comments.prototype_id}/comments/${comments.id}">削除</a>
           </div>
         </div>
+      </div>
                `
     return html;
   }
@@ -32,9 +34,14 @@ $(document).on('turbolinks:load',function(){
     .done(function(data, status, xhr) {
       if (xhr.status === 200) {
         var html = buildHTML(data);
-        $('.col-md-8').append(html);
-        $('.text-box').val('');
-        $('html,body').animate({scrollTop: $('body')[0].scrollHeight}, 'slow');
+        var input = $('#comment_text').val();
+        if(input === "") {
+          alert("コメントを入力して下さい")
+          return;
+        }
+      $('.col-md-8').append(html);
+      $('#comment_text').val('');
+      $('html,body').animate({scrollTop: $('body')[0].scrollHeight}, 'slow');
       } else {
         console.log(xhr.getResponseHeader('Location'));
       }

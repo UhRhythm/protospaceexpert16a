@@ -8,10 +8,10 @@ class CommentsController < ApplicationController
       begin
         @user = current_user.id
         @comments = Comment.create(comment_params)
-        respond_to do |format|
-          format.html{redirect_to @comments.prototype,notice: "コメントしました"}
-          format.json
-        end
+          respond_to do |format|
+            format.html{redirect_to @comments.prototype,notice: "コメントしました"}
+            format.json
+          end
       rescue ActiveRecord::RecordNotFound
         redirect_to new_user_session_path
       end
