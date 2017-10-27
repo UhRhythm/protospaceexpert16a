@@ -8,6 +8,7 @@ class PrototypesController < ApplicationController
   def new
     @prototype = Prototype.new
     @prototype.captured_images.build
+    @prototype.tags.build
   end
 
   def create
@@ -15,8 +16,8 @@ class PrototypesController < ApplicationController
     if @prototype.save
       redirect_to :root, notice: 'New prototype was successfully created'
     else
-      redirect_to ({ action: new }), alert: 'YNew prototype was unsuccessfully created'
-     end
+      redirect_to :root, alert: 'New prototype was unsuccessfully created'
+    end
   end
 
   def show
@@ -24,6 +25,7 @@ class PrototypesController < ApplicationController
     @comment = Comment.new
     @comments = @prototype.comments
     @comments_count = Comment.count
+    @tags = @prototype.tags
   end
 
   def edit
@@ -57,7 +59,8 @@ class PrototypesController < ApplicationController
       :catch_copy,
       :concept,
       :user_id,
-      captured_images_attributes: [:content, :status]
+      captured_images_attributes: [:content, :status],
+      tags_attributes: [:name]
     )
   end
 end
