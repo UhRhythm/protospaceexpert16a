@@ -33,7 +33,7 @@ $(document).on('turbolinks:load',function(){
       if (xhr.status === 200) {
         var html = buildHTML(data);
         $('.col-md-8').append(html);
-        $('.text-box').val('ajax効いてる');
+        $('.text-box').val('');
         $('html,body').animate({scrollTop: $('body')[0].scrollHeight}, 'slow');
       } else {
         console.log(xhr.getResponseHeader('Location'));
