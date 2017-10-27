@@ -11,7 +11,7 @@ $(document).on('turbolinks:load',function(){
             <h4 class="media-heading#top-aligned-media">${comments.user_name}</h4>
             <p>${comments.text}</p>
             <a href=${comments.prototype_id}, ${comments.id}>編集</a>
-            <a href=${comments.prototype_id}, ${comments.id}>編集</a>
+            <a data-method="delete" href="/prototypes/${comments.prototype_id}/comments/${comments.id}">削除</a>
           </div>
         </div>
                `
