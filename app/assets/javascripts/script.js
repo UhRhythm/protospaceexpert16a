@@ -1,60 +1,47 @@
-// $(function(){
-//   function buildHTML(comment){
-//     var html = `<h4>${comment.user_name}</h4>
-//                 <p>${comment.text}</p>
-//                 <a href=${comment.prototype_id}, method: :post>編集</a>
-//                `
-//     return html;
-//   }
-//   $('#new_comment').on('submit', function(e){
-//     e.preventDefault();
-//     var formData = new FormData(this);
-//     var href = window.location.href + '/comments'
-//     $.ajax({
-//       url: href,
-//       type: "POST",
-//       data: formData,
-//       dataType: 'json',
-//       processData: false,
-//       contentType: false
-//     })
-//     .done(function(data){
-//       var html = buildHTML(data);
-//       $('.proto_comments').append(html)
-//       $('.textbox').val('')
-//     })
-//     .fail(function(){
-//       alert('error');
-//     })
-//   })
-// });
+$(document).on('turbolinks:load',function(){
+  function buildHTML(comments){
+    if (comments.user_avatar != null)
+      var user_avatar = `<img alt="64x64", src="", style="width: 64px; height: 64px;", "data-src"="holder.js/64x64", "data-holder"="{&quot;rendered&quot;:&quot;true&quot;}", class="media-object">`
+    var html = `
+        <div class="media">
+          <div class="media-left">
+            <a href="/users/83"></a>
+              ${user_avatar}</div>
+          <div class="media-body", id="comments-review" data-id"${comments.id}">
+            <h4 class="media-heading#top-aligned-media">${comments.user_name}</h4>
+            <p>${comments.text}</p>
+            <a href=${comments.prototype_id}, ${comments.id}>編集</a>
+            <a href=${comments.prototype_id}, ${comments.id}>編集</a>
+          </div>
+        </div>
+               `
+    return html;
+  }
+  $('#new_comment').on('submit', function(e){
+    e.preventDefault();
+    var formData = new FormData(this);
+    var href = window.location.href + "/comments"
+    $.ajax({
+      url: href,
+      type: 'POST',
+      data: formData,
+      dataType: 'json',
+      processData: false,
+      contentType: false
+    })
+    .done(function(data, status, xhr) {
+      if (xhr.status === 200) {
+        var html = buildHTML(data);
+        $('.col-md-8').append(html);
+        $('.text-box').val('ajax効いてる');
+        $('html,body').animate({scrollTop: $('body')[0].scrollHeight}, 'slow');
+      } else {
+        console.log(xhr.getResponseHeader('Location'));
+      }
+    })
+    .fail(function(){
+      alert('以下のエラーが考えられます。\n1.コメントが入力できていない\n2.ログインできていない。');
+    })
+  })
+});
 
-// $(function(){
-//   function buildHTML(comment){
-//     var html = `<h4>${comment.user.name}</h4>
-//                 <p>${comment.text}</p>
-//                `
-//     return html;
-//   }
-//   $('#new_comment').on('submit', function(e){
-//     e.preventDefault();
-//     var formData = new FormData(this);
-//     var url = $(this).attr('action')
-//     $.ajax({
-//       url: url,
-//       type: 'POST',
-//       data: formData,
-//       dataType: 'json',
-//       processData: false,
-//       contentType: false
-//     })
-//     .done(function(data){
-//       var html = buildHTML(data);
-//       $('.medie-body').append(html)
-//       $('.text-box').val('')
-//     })
-//     .fail(function(){
-//       alert('error');
-//     })
-//   })
-// });
