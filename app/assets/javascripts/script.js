@@ -29,13 +29,37 @@ $(document).on('turbolinks:load',function(){
       processData: false,
       contentType: false
     })
-    .done(function(data){
-      var html = buildHTML(data);
-      $('.col-md-8').append(html);
-      $('.text-box').val('ajax効いてる');
+    .done(function(data, status, xhr) {
+      if (xhr.status === 200) {
+        var html = buildHTML(data);
+        $('.col-md-8').append(html);
+        $('.text-box').val('ajax効いてる');
+        $('html,body').animate({scrollTop: $('body')[0].scrollHeight}, 'slow');
+      } else {
+        console.log(xhr.getResponseHeader('Location'));
+      }
     })
     .fail(function(){
       alert('以下のエラーが考えられます。\n1.コメントが入力できていない\n2.ログインできていない。');
     })
   })
 });
+
+    // .success(function(data, status, xhr) {
+    //   if (xhr.status === 200) {
+    //     .done(function(data){
+    //       console.log('done');
+    //       var html = buildHTML(data);
+    //       $('.col-md-8').append(html);
+    //       $('.text-box').val('ajax効いてる');
+    //       $('.proto-comments').animate({scrollTop: $('.proto-comments')[0].scrollHeight}, 'slow');
+    //     })
+    //     .fail(function(){
+    //       console.log('fail');
+    //       alert('以下のエラーが考えられます。\n1.コメントが入力できていない\n2.ログインできていない。');
+    //     })
+    //   } else {
+    //     console.log(xhr.getResponseHeader('Location'));
+    //     console.log('aaa');
+    //   }
+    // })

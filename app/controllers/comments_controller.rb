@@ -1,24 +1,27 @@
 class CommentsController < ApplicationController
-  before_action :check_logined, only: [:create]
   def new
     @comment = Comment.new
   end
 
   def create
-    if current_user
-      @comments = Comment.create(comment_params)
-      respond_to do |format|
-        if current_user
-          format.html{redirect_to root_path}
-          format.json{redirect_to root_path}
-        else
-          format.html{redirect_to root_path}
-          format.json{redirect_to root_path}
+    if current_user then
+      begin
+        @user = current_user.id
+        @comments = Comment.create(comment_params)
+        respond_to do |format|
+          format.html{redirect_to @comments.prototype,notice: "コメントしました"}
+          format.json
         end
+      rescue ActiveRecord::RecordNotFound
+        redirect_to new_user_session_path
       end
-    else
-      redirect_to root_path
     end
+
+    unless current_user
+      # flash[:referer] = request.fullpath
+      redirect_to new_user_session_path, method: :get
+    end
+
   end
 
   def edit
@@ -45,20 +48,20 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:text).merge(user_id: current_user.id, prototype_id: params[:prototype_id])
   end
 
-  def check_logined
-    if current_user then
-      begin
-        @user = current_user.id
-      rescue ActiveRecord::RecordNotFound
-        reset_session
-      end
-    end
+  # def check_logined
+  #   if current_user then
+  #     begin
+  #       @user = current_user.id
+  #     rescue ActiveRecord::RecordNotFound
+  #       redirect_to new_user_session_path
+  #     end
+  #   end
 
-    unless current_user
-      # flash[:referer] = request.fullpath
-      redirect_to new_user_session_path
-    end
-  end
+  #   unless current_user
+  #     # flash[:referer] = request.fullpath
+  #     redirect_to new_user_session_path, method: :get
+  #   end
+  # end
 
 end
 

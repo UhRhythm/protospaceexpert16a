@@ -61,7 +61,7 @@
               = link_to '削除', prototype_comment_path(c.prototype_id, c.id), method: :delete
     -# コメント作成
   .form-inlign{ role: "form"}
-    = form_for @comment, url: prototype_comments_path(@prototype, @comment), id: "new_comment", class: "new_comment" do |f|
+    = form_for @comment, url: prototype_comments_path(@prototype), id: "new_comment", class: "new_comment" do |f|
       %h4 Write a comment
       .row
         .form-group.col-md-10
