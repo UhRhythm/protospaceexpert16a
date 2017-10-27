@@ -23,6 +23,7 @@ pickle-email-*.html
 
 # TODO Comment out these rules if you are OK with secrets being uploaded to the repo
 config/initializers/secret_token.rb
+app/uploaders/prototype_image_uploader.rb
 #config/secrets.yml
 
 ## Environment normalization:
@@ -42,3 +43,4 @@ bower.json
 
 # Ignore pow environment settings
 .powenv
+#Gemfile.lock

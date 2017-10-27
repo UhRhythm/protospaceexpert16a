@@ -8,6 +8,7 @@ class PrototypesController < ApplicationController
   def new
     @prototype = Prototype.new
     @prototype.captured_images.build
+    @prototype.tags.build
   end
 
   def create
@@ -15,15 +16,16 @@ class PrototypesController < ApplicationController
     if @prototype.save
       redirect_to :root, notice: 'New prototype was successfully created'
     else
-      redirect_to ({ action: new }), alert: 'YNew prototype was unsuccessfully created'
-     end
+      redirect_to :root, alert: 'New prototype was unsuccessfully created'
+    end
   end
 
   def show
     @prototype = Prototype.find(params[:id])
     @comment = Comment.new
     @comments = @prototype.comments
-    @comments_count = @comments.count
+    @comments_count = Comment.count
+    @tags = @prototype.tags
   end
 
   def edit
@@ -40,8 +42,9 @@ class PrototypesController < ApplicationController
   end
 
   def destroy
-    @prototype = Prototype.find(params[:id])
-    @prototype.destroy if prototype.user_id == current_user.id
+    prototype = Prototype.find(params[:id])
+    prototype.destroy if prototype.user_id == current_user.id
+    redirect_to :root, notice: 'successfully deleated'
   end
 
   private
@@ -56,7 +59,8 @@ class PrototypesController < ApplicationController
       :catch_copy,
       :concept,
       :user_id,
-      captured_images_attributes: [:content, :status]
+      captured_images_attributes: [:content, :status],
+      tags_attributes: [:name]
     )
   end
 end
