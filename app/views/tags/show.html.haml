@@ -16,7 +16,7 @@
   .row
     .thumbnail
       .thumbnail-tag-name
-        = @tag.name
+        = link_to "#{@tag.name}",tag_path(@tag.id)
       .thumbnail-tag-meta
         = @prototypes.count
 .row-tag

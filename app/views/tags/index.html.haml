@@ -16,6 +16,5 @@
     = @tags.each do |tag|
       .thumbnail-mini
         .thumbnail-mini-name
-          = tag.name
-        .thumbnail-mini-meta
-          = tag.name
+          = link_to "#{tag.name}",tag_path(tag.id)
+        .thumbnail-mini-meta 1
