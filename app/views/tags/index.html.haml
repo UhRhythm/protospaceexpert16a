@@ -17,4 +17,6 @@
       .thumbnail-mini
         .thumbnail-mini-name
           = link_to "#{tag.name}",tag_path(tag.id)
-        .thumbnail-mini-meta 1
+        .thumbnail-mini-meta
+          #{@tags.count[tag.name]}
+          -binding.pry
