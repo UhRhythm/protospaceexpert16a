@@ -19,5 +19,6 @@
         = link_to "#{@tag.name}",tag_path(@tag.id)
       .thumbnail-tag-meta
         = @prototypes.count
+        projects
 .row-tag
   = render partial: 'prototypes/prototype', collection: @prototypes

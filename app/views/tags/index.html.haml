@@ -13,10 +13,9 @@
       = link_to "VIEW TAGS", tags_path, class: "btn btn-default col-lg-1"
 .container.proto-list
   .row
-    = @tags.each do |tag|
+    - @tags.each do |tag|
       .thumbnail-mini
         .thumbnail-mini-name
           = link_to "#{tag.name}",tag_path(tag.id)
         .thumbnail-mini-meta
-          #{@tags.count[tag.name]}
-          -binding.pry
+          #{@tags.count[tag.name]}projects
