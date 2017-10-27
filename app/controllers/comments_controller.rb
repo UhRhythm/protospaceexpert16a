@@ -1,17 +1,23 @@
 class CommentsController < ApplicationController
-  before_filter :check_logined, except: [:create]
   before_action :check_logined, only: [:create]
-
-
   def new
     @comment = Comment.new
   end
 
   def create
-    @comments = Comment.create(comment_params)
-    respond_to do |format|
-      format.html
-      format.json
+    if current_user
+      @comments = Comment.create(comment_params)
+      respond_to do |format|
+        if current_user
+          format.html{redirect_to root_path}
+          format.json{redirect_to root_path}
+        else
+          format.html{redirect_to root_path}
+          format.json{redirect_to root_path}
+        end
+      end
+    else
+      redirect_to root_path
     end
   end
 
@@ -51,7 +57,6 @@ class CommentsController < ApplicationController
     unless current_user
       # flash[:referer] = request.fullpath
       redirect_to new_user_session_path
-
     end
   end
 
